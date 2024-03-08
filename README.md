@@ -4,6 +4,28 @@
 |------|---------|
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 
+## Example
+
+```hcl
+module "cdn" {
+  source = "."
+  #   version = "1.0.0"
+
+  domain_name = "example.com"
+  subdomains  = ["app"]
+}
+
+output "cloudfront_distribution_id" {
+  value       = module.cdn.cloudfront_distribution_id
+  description = "The ID of the CloudFront distribution"
+}
+
+output "s3_bucket_id" {
+  value       = module.cdn.s3_bucket_id
+  description = "The ID of the S3 bucket"
+}
+```
+
 ## Providers
 
 | Name | Version |
@@ -48,25 +70,3 @@
 |------|-------------|
 | <a name="output_cloudfront_distribution_id"></a> [cloudfront\_distribution\_id](#output\_cloudfront\_distribution\_id) | The ID of the CloudFront distribution |
 | <a name="output_s3_bucket_id"></a> [s3\_bucket\_id](#output\_s3\_bucket\_id) | The ID of the S3 bucket |
-
-## Example
-
-```hcl
-module "cdn" {
-  source = "../"
-  #   version = "1.0.0"
-
-  domain_name = "example.com"
-  subdomains  = ["app"]
-}
-
-output "cloudfront_distribution_id" {
-  value       = module.cdn.cloudfront_distribution_id
-  description = "The ID of the CloudFront distribution"
-}
-
-output "s3_bucket_id" {
-  value       = module.cdn.s3_bucket_id
-  description = "The ID of the S3 bucket"
-}
-```
